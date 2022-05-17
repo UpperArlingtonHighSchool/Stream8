@@ -1,10 +1,12 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainPanel extends JPanel {
     public MainPanel(){
         super();
+        this.setBackground(new Color(242, 255, 161));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel description = new JLabel("<html><body>" +

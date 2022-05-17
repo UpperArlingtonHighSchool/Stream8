@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Window extends JFrame {
     public <T> Window(T[][] data){
@@ -10,11 +12,13 @@ public class Window extends JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
-        this.setBackground(new Color(185, 255, 161));
         this.setTitle("Stream Study");
 
         //add title
-        this.add(new JLabel(new ImageIcon("./src/GUI/title.png")), BorderLayout.NORTH);
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBackground(new Color(185, 255, 161));
+        titlePanel.add(new JLabel(new ImageIcon("./src/GUI/title.png")));
+        this.add(titlePanel, BorderLayout.NORTH);
 
         //setup main panel
         JPanel mainPanel = new MainPanel();
@@ -26,9 +30,24 @@ public class Window extends JFrame {
         dataInfoPanel.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
         this.add(dataInfoPanel, BorderLayout.WEST);
 
+        //setup right-side panel
+        JPanel rightPanel = new RightSideBar();
+        rightPanel.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
+        this.add(rightPanel, BorderLayout.EAST);
+
         //refresh window
         this.revalidate();
     }
 
 
+
+
+
+    //window resize listener
+    //source: https://stackoverflow.com/questions/1088595/how-to-do-something-on-swing-component-resizing
+    /*class ResizeListener extends ComponentAdapter {
+        public void componentResized(ComponentEvent e) {
+
+        }
+    }*/
 }
