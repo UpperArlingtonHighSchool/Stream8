@@ -5,7 +5,7 @@ topic: temperature vs. turbility <br /><br />
 
 #To-do List:<br />
 <del>  Basic program structure <br />
-<del>  Basic GUI<br />
+  Basic GUI<br /> </del> 
   Chart generating algorithm (Grant)<br />
   Data statistics calculation (Kun)<br />
   Data scraping<br />
