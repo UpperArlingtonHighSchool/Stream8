@@ -3,7 +3,7 @@ UAHS IB CS Stream Study project <br />
 topic: temperature vs. turbility <br /><br />
 
 
-#To-do List:<br />
+# To-do List:<br />
 <del>  Basic program structure <br />
   Basic GUI<br /> </del> 
   Chart generating algorithm (Grant)<br />
