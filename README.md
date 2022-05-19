@@ -9,5 +9,12 @@ topic: temperature vs. turbility <br /><br />
   Chart generating algorithm (Grant)<br />
   Data statistics calculation (Kun)<br />
   Data scraping<br />
-  Connecting GUI w/ algorithm<br />
+  Connecting GUI w/ algorithm<br /><br />
 
+# How to use git command:<br />
+  git pull //sync with remote repository<br />
+  git status //check changes made to the files<br />
+  git diff //see detailed changes<br />
+  git add * //stage all the changes to commit<br />
+  git commit -m "your message here" //save all the changes and add notes to the changes<br />
+  git push //push your changes to the remote repository<br />
