@@ -34,6 +34,6 @@ public class StreamStudyRunner{
 
         //create GUI elements
         Window visualizer = new Window(data);
-
+        WebScrape test = new WebScrape();
     }
 }
