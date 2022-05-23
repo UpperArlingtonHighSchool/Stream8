@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 public class Window extends JFrame {
+    JFrame window  = this;
     public <T> Window(T[][] data){
         super();
         Dimension windowRes = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
@@ -37,6 +40,7 @@ public class Window extends JFrame {
 
         //refresh window
         this.revalidate();
+
     }
 
 
