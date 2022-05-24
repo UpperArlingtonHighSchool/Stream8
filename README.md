@@ -7,9 +7,9 @@ topic: temperature vs. turbility <br /><br />
 <del>  Basic program structure <br />
   Basic GUI<br /> </del> 
   Chart generating algorithm (Grant)<br />
-  Data statistics calculation (Kun)<br />
-  Data scraping<br />
-  Connecting GUI w/ algorithm<br /><br />
+  Data scraping (Mihai)<br />
+  Connecting GUI w/ algorithm<br />
+  Slide & presentation preparation (Kun)<br /><br />
 
 # How to use git command:<br />
   git pull //sync with remote repository<br />
