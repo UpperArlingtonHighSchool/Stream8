@@ -2,9 +2,6 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 public class Window extends JFrame {
     JFrame window  = this;
@@ -47,11 +44,4 @@ public class Window extends JFrame {
 
 
 
-    //window resize listener
-    //source: https://stackoverflow.com/questions/1088595/how-to-do-something-on-swing-component-resizing
-    /*class ResizeListener extends ComponentAdapter {
-        public void componentResized(ComponentEvent e) {
-
-        }
-    }*/
 }

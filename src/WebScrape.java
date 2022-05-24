@@ -1,9 +1,46 @@
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+
+
 public class WebScrape {
-    public WebScrape(){
-        // put any test cases and method calls here in constructor
-        // the program will automatically call this when running
-        // good luck Mihai
-        System.out.println("WebScrape class load successfully!");
+
+    ArrayList<Double> turbidity = new ArrayList<Double>();//contains turbidity
+    ArrayList<Double> temperature = new ArrayList<Double>();//contains temperature
+    public WebScrape() throws Exception {
+
+        final Document document = Jsoup.connect("https://waterdata.usgs.gov/oh/nwis/uv?cb_00010=on&cb_00095=on&cb_00300=on&cb_00400=on&cb_63680=on&format=rdb&site_no=04212100&period=&begin_date=2022-05-16&end_date=2022-05-23").get();
+        String doc = document.toString().substring(900);
+        //System.out.print(doc);
+
+        Scanner chopper = new Scanner(doc);
+
+        String[] split = doc.split(" ");
+        //System.out.print(Arrays.toString(split));
+        for(int i = 0; i<split.length;i++)
+        {
+            if(split[i].equals("EDT"))
+            {
+                temperature.add(Double.parseDouble(split[i+1]));
+                turbidity.add(Double.parseDouble(split[i+9]));
+            }
+        }
+
+        String line = "";
+        int index = 0;
+    }
+    public ArrayList<Double> get_temperature(){
+        return temperature;
+    }
+    public ArrayList<Double> get_turbidity(){
+        return turbidity;
     }
 }
+
+
+
+
+

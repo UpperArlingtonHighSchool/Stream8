@@ -10,7 +10,7 @@ public class StreamStudyRunner{
     File dataFile;
     String[][] data;
     DataPt[][] dataPoints;
-    public void initiate() throws FileNotFoundException {
+    public void initiate() throws Exception {
 
         // load data file
         System.out.println(System.getProperty("user.dir"));
