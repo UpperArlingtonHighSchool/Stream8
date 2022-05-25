@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
                 "</body></html>");
 
         this.add(description);
-        webinfo = new JLabel("<html>Data of Grand River near Painesville OH, <br>source: https://waterdata.usgs.gov/oh/nwis/uv?cb_00010=on&cb_00095=on&cb_00300=on&cb_00400=on&cb_63680=on&format=rdb&site_no=04212100&period=&begin_date=2022-05-16&end_date=2022-05-23</html>");
+        webinfo = new JLabel("<html>Data of Grand River near Painesville OH, <br>source: https://waterdata.usgs.gov/oh/nwis</html>");
 
         this.add(webinfo);
         webinfo.setVisible(false);

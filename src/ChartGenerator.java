@@ -15,6 +15,11 @@ public class ChartGenerator extends JPanel {
     JButton switchStyle = new JButton("Bar Graph");
     JButton switchSrc = new JButton("Use Data from Web");
     DefaultCategoryDataset dataset;
+    DefaultCategoryDataset webdataset;
+    ChartPanel givengraph;
+    ChartPanel webgraph;
+    JFreeChart givenbargraph;
+    JFreeChart webbargraph;
     Window window;
     WebScrape getData;
     // this class is responsible for all the chart generating algorithms
@@ -24,18 +29,20 @@ public class ChartGenerator extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
-    public void lineGraph(double[] temp, double[] turb){
+    public void lineGraph(double[] temp, double[] turb) {
         this.removeAll();
-        dataset = createDataset(temp,turb);
+
+        if(givengraph == null){
+        dataset = createDataset(temp, turb);
         // Create chart
         JFreeChart chart = ChartFactory.createLineChart(
                 "Stream Study", "Temperature", "Turbidity", dataset,
                 PlotOrientation.VERTICAL,
-                true,true,false
+                true, true, false
         );
-
-        ChartPanel graph = new ChartPanel(chart);
-        this.add(graph);
+        givengraph = new ChartPanel(chart);
+    }
+        this.add(givengraph);
         switchStyle.setText("Bar Graph");
         this.add(switchStyle);
         this.add(switchSrc);
@@ -62,13 +69,16 @@ public class ChartGenerator extends JPanel {
         switchSrc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (switchSrc.getText().equals("Use Data from Web")) {
                     switchSrc.setText("Use Given Data");
                     getData = null;
-                    try {
-                        getData = new WebScrape();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                    if(getData == null) {
+                        try {
+                            getData = new WebScrape();
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                     lineGraph(getData.get_temperature(), getData.get_turbidity());
                     window.showWebInfo();
@@ -86,17 +96,19 @@ public class ChartGenerator extends JPanel {
 
     public void lineGraph(Double[] temp, Double[] turb){
         this.removeAll();
-        dataset = createDataset(temp,turb);
+        if(webgraph==null) {
+        if(webdataset == null)
+            webdataset = createDataset(temp,turb);
         // Create chart
         JFreeChart chart = ChartFactory.createLineChart(
-                "Stream Study", "Temperature", "Turbidity", dataset,
+                "Stream Study", "Temperature", "Turbidity", webdataset,
                 PlotOrientation.VERTICAL,
                 true,true,false
         );
-
-        ChartPanel graph = new ChartPanel(chart);
-        graph.setSize(this.getSize());
-        this.add(graph);
+            webgraph = new ChartPanel(chart);
+            webgraph.setSize(this.getSize());
+        }
+        this.add(webgraph);
         switchStyle.setText("Bar Graph");
         this.add(switchStyle);
         this.add(switchSrc);
@@ -106,11 +118,19 @@ public class ChartGenerator extends JPanel {
 
     public void barGraph(){
         this.removeAll();
-        JFreeChart barGraph = ChartFactory.createBarChart3D( "Stream Study", "Temperature", "Turbidity", dataset,
+        if(switchSrc.getText().equals("Use Data from Web") && givenbargraph==null)
+            givenbargraph = ChartFactory.createBarChart3D( "Stream Study", "Temperature", "Turbidity", dataset,
                 PlotOrientation.VERTICAL,
                 true,true,false);
-
-        ChartPanel graph = new ChartPanel(barGraph);
+        if(switchSrc.getText().equals("Use Given Data") && webbargraph==null)
+            webbargraph = ChartFactory.createBarChart3D( "Stream Study", "Temperature", "Turbidity", webdataset,
+                    PlotOrientation.VERTICAL,
+                    true,true,false);
+        ChartPanel graph;
+        if(switchSrc.getText().equals("Use Data from Web"))
+            graph = new ChartPanel(givenbargraph);
+        else
+            graph = new ChartPanel(webbargraph);
         this.add(graph);
         switchStyle.setText("Line Graph");
         this.add(switchStyle);
@@ -123,7 +143,8 @@ public class ChartGenerator extends JPanel {
 
 
     private DefaultCategoryDataset createDataset(double[] temp, double[] turb) {
-
+        if(dataset!=null)
+            return dataset;
         String series1 = "Temperature";
         String series2 = "Turbidity";
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -141,10 +162,11 @@ public class ChartGenerator extends JPanel {
         return dataset;
     }
     private DefaultCategoryDataset createDataset(Double[] temp, Double[] turb) {
-
+        if(webdataset != null)
+            return webdataset;
         String series1 = "Temperature";
         String series2 = "Turbidity";
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        webdataset = new DefaultCategoryDataset();
         if(temp.length != turb.length)
             return null;
         twoDouble[] list = new twoDouble[temp.length];
@@ -154,8 +176,8 @@ public class ChartGenerator extends JPanel {
         }
         Arrays.sort(list);
         for(twoDouble item:list){
-            dataset.addValue(item.turb, set1, (Double)item.temp);
+            webdataset.addValue(item.turb, set1, (Double)item.temp);
         }
-        return dataset;
+        return webdataset;
     }
 }
