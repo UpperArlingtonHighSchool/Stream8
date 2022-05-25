@@ -32,11 +32,15 @@ public class WebScrape {
         String line = "";
         int index = 0;
     }
-    public ArrayList<Double> get_temperature(){
-        return temperature;
+    public Double[] get_temperature(){
+        Double[] array = new Double[temperature.size()];
+        temperature.toArray(array); // fill the array
+        return array;
     }
-    public ArrayList<Double> get_turbidity(){
-        return turbidity;
+    public Double[] get_turbidity(){
+        Double[] array = new Double[turbidity.size()];
+        turbidity.toArray(array); // fill the array
+        return array;
     }
 }
 

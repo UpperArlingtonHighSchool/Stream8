@@ -1,9 +1,6 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import GUI.*;
 
 public class StreamStudyRunner{
     private static String[] categories = {"location", "year", "flowrate", "turbidity", "TempinC", "TDS", "Conductivity", "Salinity", "Hardness", "TotalChlorine", "FreeChlorine", "Alkalinity", "pH", "Nitrate", "Nitrite", "Phosphate"};
