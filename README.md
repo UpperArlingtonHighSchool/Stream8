@@ -5,11 +5,11 @@ topic: temperature vs. turbility <br /><br />
 
 # To-do List:<br />
 <del>  Basic program structure <br />
-  Basic GUI<br /> </del> 
+  Basic GUI<br /> 
   Chart generating algorithm (Grant)<br />
   Data scraping (Mihai)<br />
   Connecting GUI w/ algorithm<br />
-  Slide & presentation preparation (Kun)<br /><br />
+  Slide & presentation preparation (Kun)<br /><br /></del> 
 
 # How to use git command:<br />
   git pull //sync with remote repository<br />
